@@ -1,0 +1,627 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+    scroll-behavior: smooth;
+}
+/*layout*/
+.container{
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 15fr 35fr 30fr 15fr 15fr ;
+    grid-template-areas: 
+    "nav nav nav nav"
+    "main main main main"
+    "about about about about"
+    "service service service service"
+    "portfolio portfolio portfolio portfolio"
+    "contact contact contact contact";
+}
+nav{
+    grid-area: nav;
+    background-color: #000;
+}
+main{
+    grid-area: main;
+}
+#about{
+    background-color: #f5f5f5;
+    grid-area: about;
+}
+#service{
+    padding-top: 50px;
+    /*background-color: #06b9b5;*/
+    background: linear-gradient(45deg, #6a6bf1, #4ad5ff);
+    grid-area: service;
+    width: 100%;
+    margin: auto;
+}
+#portfolio{
+    background-color: #faf7f0;
+    grid-area: portfolio;
+}
+#contact{
+    background-color: #000;
+    grid-area: contact;
+}
+/*Layout end*/
+/*NavBar*/
+nav,.nav-links{
+    display: flex;
+}
+nav{
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
+nav h1{
+    color: #fff;
+}
+.nav-links{
+    list-style: none;
+    text-decoration: none;
+    gap: 20px;
+}
+.nav-links a{
+    text-decoration: none;
+    text-decoration-color: #fff;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+}
+a:hover{
+    text-decoration: underline;
+    text-underline-offset: 15px;
+    color: #4ad5ff;
+}
+/*Side bar*/
+.sidebar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 50px;
+    list-style: none;
+    background-color: #000;
+    z-index: 999;
+    margin-bottom: 20px;
+}
+.sidebar a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+.sidebar .m-btn{
+    padding-bottom: 30px;
+}
+.sidebar a:hover{
+    text-decoration: underline;
+    text-underline-offset: 15px;
+    color: #06b9b5;
+}
+.sidebar a>svg{
+    margin-top: 20px;
+}
+.menu-btn{
+    display: none;
+}
+/*Text Effect*/
+
+
+
+  main {
+    background-image:  linear-gradient(to left, rgba(0,0,0,0.7), rgba(0,0,0,0.25)100%, transparent),url('image/me.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+main .content {
+    display: flex;
+    align-items: center;
+    gap: 350px; /* Controls the spacing between the image and text */
+    padding: 0 20px; /* Adds padding around the entire content */
+}
+
+
+.m-text {
+    max-width: 600px;
+    text-align: left;
+    opacity: 0; /* Initially hidden for fade-in */
+    animation: fadeIn 2s ease forwards; /* Fade-in animation */
+    animation-delay: 1s; /* Delays text fade-in to follow image */
+}
+
+.m-text h3 {
+    font-size: 16px;
+    color: #bbdb07;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.m-text h1 {
+    font-size: 36px;
+    color: #fff;
+    margin: 0;
+}
+
+.m-text p {
+    color: #fff;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+.m-text button {
+    background: linear-gradient(45deg, #6a6bf1, #4ad5ff);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-right: 10px; /* Adds space between buttons */
+    opacity: 0; /* Initially hidden for fade-in */
+    animation: fadeIn 2s ease forwards;
+    animation-delay: 1.5s; /* Delays button fade-in to follow text */
+}
+
+.m-text button:hover {
+    background: linear-gradient(45deg, #4ad5ff, #6a6bf1);
+}
+
+.me img {
+    width: 350px;
+    height: auto;
+}
+/* Fade-in keyframes */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px); /* Slight move up */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Set position back */
+    }
+}
+
+ 
+/*About*/
+.about-container{
+    background-color: #faf7f0;
+    height: auto;
+    width: 85%;
+    margin: auto;
+    margin-top: 50px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    padding: 30px;
+}
+.img-container{
+    display: flex;
+    gap: 15px;
+}
+.img-container .img-cont{
+    width: 230px;
+    height: 230px;
+}
+.about-info h5{
+    font-size: 15px;
+    padding-bottom: 25px;
+    color: #363333;
+}
+.about-info span{
+    color: gray;
+    font-size: 14px;
+    padding-left: 5px;
+    font-weight: 500;
+}
+.space-container{
+    width: 80%;
+    gap: 30px;
+}
+.space-container p{
+    line-height: 28px;
+    padding-top: 20px;
+    font-size: 14px;
+}
+/* Typewriter Animation */
+@keyframes typewriter {
+    from {
+        width: 0;
+        opacity: 1;
+    }
+    to {
+        width: 100%;
+        opacity: 1;
+    }
+}
+
+.typewriter span {
+    display: block; /* Make each line a block to go to the next line */
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid black;
+    width: 0;
+    opacity: 0;
+}
+
+/* Trigger the typewriter effect when .start-typewriter is added */
+.start-typewriter {
+    animation: typewriter 1.5s steps(40, end) forwards;
+    opacity: 1;
+}
+.w3-blue{
+    background-color: black;
+    border-radius: 0px;
+    background-image: linear-gradient(90deg, #4a90e2, #007aff);
+    text-align: end;
+    margin-bottom: 10px;
+}  
+.w3-container{
+    padding-right: 10px;
+    padding-top: 3px;
+    height: 6px;
+    padding-top: 5px;
+    transition: width 2s ease; /* Adjust duration as needed */
+}
+.w3-light-grey{
+    margin-bottom: 35px;
+}
+.w3-container>span{
+    padding-top: 15px;
+}
+.progress-file{
+    margin-right: 150px;
+}
+.progress-file h2{
+    padding-bottom: 20px;
+    color: #000;
+}
+@keyframes header{
+    from{
+        transform: translateX(-300px);
+        opacity: 0;
+    }
+    to{
+        transform: translateX(0px);
+        opacity: 1;
+    }
+}
+#about.animate .header, 
+#about.animate .w3-container, 
+#about.animate figcaption {
+    animation-name: header;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;    animation-name: header;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+}
+.progress-file figcaption{
+    padding-bottom: 10px;
+}
+.design{
+    margin-bottom: 50px;
+}
+/*MY Experience - Service*/
+#service {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    color: #fff;
+    
+}
+#service h1{
+    text-align: center;
+    margin-bottom: 100px;
+    margin-top: 50px;
+    outline-offset: 2px;
+}
+
+.container-resume {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+@keyframes slideresume{
+    from{
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+    to{
+        transform: translateY(0px);
+        opacity: 0.5;
+        opacity: 1;
+    }
+}
+/* Only apply animation when .animate class is added */
+#service.animate .res,
+#service.animate .container-resume {
+    animation-name: slideresume;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+}
+
+
+.left-section, .right-section {
+    width: 48%;
+}
+
+#service h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 5px;
+}
+
+h3 {
+    font-size: 16px;
+    color: #12193f;
+    margin-top: 20px;
+}
+
+.summary, .education, .experience {
+    margin-bottom: 20px;
+}
+
+.summary p, .education p, .experience p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.location, .contact-info {
+    font-size: 14px;
+    color: #fff;
+}
+
+.job-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.company {
+    color: #fff;
+    font-size: 15px;
+    font-style: italic;
+}
+
+.time-period {
+    color: #12193f;
+    font-size: 14px;
+}
+
+ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+ul li {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.circle {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+/*Portfolio*/
+.por-container{
+    max-width: 1140px;
+    margin: auto;
+}
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+.item {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .item[style="display: block;"] {
+    opacity: 1;
+  }
+  
+.section-title{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 40px;
+}
+.section-title h1{
+    display: inline-block;
+    font-size: 35px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 5px;
+    position: relative;
+}
+.section-title h1:before{
+    content: '';
+    left: 0;
+    position: absolute;
+    height: 2px;
+    right: 32%;
+    background-color: #06b9b5;
+    bottom: 0px;
+}
+.text-center{
+    text-align: center!important;
+}
+.text-right{
+    text-align: right!important;
+}
+.portfolio{
+    background-color: white;
+    padding: 100px 7px;
+}
+.portfolio .section-title h1:before{
+    left: 30%;
+}
+.portfolio .filter-buttons{
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+.portfolio .filter-buttons ul{
+    list-style: none;
+    text-align: center;
+    padding: 0;
+}
+.portfolio .filter-buttons ul li{
+    color: #000000;
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-block;
+    margin: 0px 8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding-bottom: 0px;
+}
+.portfolio .filter-buttons ul li.active{
+    color: #06b9b5;
+    border-bottom: 2px solid #06b9b5;
+}
+.portfolio .portfolio-gallery{
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.portfolio .portfolio-gallery .item{
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    position: relative;
+    padding: 8px;
+ 
+}
+.portfolio .portfolio-gallery .item .inner{
+    position: relative;
+}
+.portfolio .portfolio-gallery .item img{
+    width: 100%;
+    display: block;
+}
+
+#load-more {
+    display: block;
+    margin: 50px auto;
+    padding: 10px 20px;
+    background: linear-gradient(45deg, #6a6bf1, #4ad5ff);
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    width:30%;
+}
+  
+  #load-more:hover{
+    opacity: 0.8;
+  }
+/*Contact Me*/
+
+.contact-section {
+    text-align: center;
+    padding: 20px;
+}
+.arrow-cont a{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    text-align: center;
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    display: block;
+}
+
+.heading {
+    font-size: 24px;
+    margin-bottom: 50px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.heading {
+    color: white;
+}
+
+.contact-boxes {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.contact-box {
+    background-color: #f0f1f6;
+    padding: 20px;
+    width: 30%;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-box i {
+    font-size: 24px;
+    color: #333;
+}
+
+.contact-box h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.contact-box p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.contact-box p a {
+    text-decoration: none;
+    color: #06b9b5;
+    border-bottom: 1px dashed #06b9b5;
+}
+
+.contact-box p a:hover {
+    color: blue;
+}
+
+.contact-boxes .contact-box {
+    border-bottom: 3px solid #06b9b5;
+}
