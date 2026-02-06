@@ -125,7 +125,7 @@ body {
     opacity: 1;
     pointer-events: auto;
     z-index: 2; /* Lower z-index when centered so lines show behind */
-    background-image: url('images/love.jpeg');
+    background-image: url('love.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -170,7 +170,7 @@ body {
     top: 200px;
     left: 5%;
     transform: scale(0.5) translateY(20px);
-    background-image: url('images/us.jpeg');
+    background-image: url('us.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -213,7 +213,7 @@ body {
     top: 200px;
     right: 5%;
     transform: scale(0.5) translateY(20px);
-    background-image: url('images/smile.jpeg');
+    background-image: url('smile.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -256,7 +256,7 @@ body {
     top: 600px;
     left: 8%;
     transform: scale(0.5) translateY(20px);
-    background-image: url('images/acade.jpeg');
+    background-image: url('acade.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -299,7 +299,7 @@ body {
     top: 600px;
     right: 8%;
     transform: scale(0.5) translateY(20px);
-    background-image: url('images/game.jpeg');
+    background-image: url('game.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
