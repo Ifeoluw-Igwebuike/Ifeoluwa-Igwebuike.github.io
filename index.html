@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valentine's Letter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cards-container">
+        <!-- SVG for connecting lines -->
+        <svg class="connection-lines" id="connectionLines">
+            <defs>
+                <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                    <polygon points="0 0, 10 3, 0 6" fill="#8b4513" />
+                </marker>
+            </defs>
+        </svg>
+
+        <!-- Card 1 - Above envelope -->
+        <div class="card card-1 active" data-card="1">
+            <div class="card-content">
+                <h3>Start Your Journey</h3>
+                <p>Click to begin</p>
+            </div>
+        </div>
+
+        <!-- Card 2 - Top Left -->
+        <div class="card card-2" data-card="2">
+            <div class="card-content">
+                <h3>Beautiful Moments</h3>
+                <p>Countless memories with you, every moment is a gift that I <span style="color: #ff1744;">cherish</span>.</span></p>
+            </div>
+        </div>
+
+        <!-- Card 3 - Top Right -->
+        <div class="card card-3" data-card="3">
+            <div class="card-content">
+                <h3>Your Smile</h3>
+                <p>Your smile is the most contagious thing in the world</p>
+            </div>
+        </div>
+
+        <!-- Card 4 - Left Side -->
+        <div class="card card-4" data-card="4">
+            <div class="card-content">
+                <h3>Fun Times</h3>
+                <p>We have so many fun times together, I can't wait to make more</p>
+            </div>
+        </div>
+
+        <!-- Card 5 - Right Side -->
+        <div class="card card-5" data-card="5">
+            <div class="card-content">
+                <h3>Our Future</h3>
+                <p>I can't wait to see where our future takes us <span style="color: #ff1744;">(wifey)</span></span></p>
+            </div>
+        </div>
+
+        <!-- Envelope in center -->
+        <div class="envelope-wrapper" data-card="6">
+            <div class="envelope" id="envelope">
+                <div class="envelope-base"></div>
+                <div class="envelope-flap"></div>
+                <div class="envelope-seal">❤️</div>
+                <div class="envelope-front">
+                    <div class="envelope-address">
+                        <p class="to-label" style="color: rgb(255, 255, 255);">To:</p>
+                        <p class="to-name" style="color: rgb(255, 255, 255);font-size: 14px;font-weight: bold;">My Queen</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Letter appears after envelope opens -->
+        <div class="letter-container" id="letterContainer">
+            <div class="letter">
+                <div class="letter-content">
+                    <div class="letter-header">
+                        <p class="date">February 6, 2026</p>
+                    </div>
+                    <div class="letter-body">
+                        <p class="greeting">Ife MI,</p>
+                        <p>With nine days to go until Valentine's, I couldn't think of anyone else to ask but the love of my life- <span style="color: #ff1744;">you</span>.</p>
+                        <p>You mean everything to me. Our memories together are a treasure I'll always cherish, and I have just one question for you.</p>
+                        <p class="question">Will you be my Valentine?</p>
+                        <div class="button-container">
+                            <button class="btn-yes" id="btnYes">Yes! ❤️</button>
+                            <button class="btn-no" id="btnNo">No</button>
+                        </div>
+                        <p class="closing">With all my love,</p>
+                        <p class="signature">Forever Yours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const cards = document.querySelectorAll('.card, .envelope-wrapper');
+        const envelope = document.getElementById('envelope');
+        const letterContainer = document.getElementById('letterContainer');
+        const connectionLines = document.getElementById('connectionLines');
+        let currentCard = 1;
+        let isOpen = false;
+
+        // Draw connection lines (only after card 1 is clicked)
+        function drawConnections() {
+            connectionLines.innerHTML = '<defs><marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><polygon points="0 0, 10 3, 0 6" fill="#8b4513" /></marker></defs>';
+            
+            // Only draw lines if card 1 has been moved
+            const card1 = document.querySelector('.card-1');
+            if (!card1.classList.contains('moved')) {
+                return;
+            }
+            
+            const connections = [
+                { from: 1, to: 2 },
+                { from: 1, to: 3 },
+                { from: 2, to: 4 },
+                { from: 3, to: 5 },
+                { from: 4, to: 6 },
+                { from: 5, to: 6 }
+            ];
+
+            connections.forEach(conn => {
+                const fromCard = document.querySelector(`[data-card="${conn.from}"]`);
+                const toCard = document.querySelector(`[data-card="${conn.to}"]`);
+                
+                if (fromCard && toCard) {
+                    const fromRect = fromCard.getBoundingClientRect();
+                    const toRect = toCard.getBoundingClientRect();
+                    const containerRect = document.querySelector('.cards-container').getBoundingClientRect();
+                    
+                    const x1 = fromRect.left + fromRect.width / 2 - containerRect.left;
+                    const y1 = fromRect.top + fromRect.height / 2 - containerRect.top;
+                    const x2 = toRect.left + toRect.width / 2 - containerRect.left;
+                    const y2 = toRect.top + toRect.height / 2 - containerRect.top;
+                    
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                    line.setAttribute('x1', x1);
+                    line.setAttribute('y1', y1);
+                    line.setAttribute('x2', x2);
+                    line.setAttribute('y2', y2);
+                    line.setAttribute('stroke', '#8b4513');
+                    line.setAttribute('stroke-width', '2');
+                    line.setAttribute('stroke-dasharray', '5,5');
+                    line.setAttribute('marker-end', 'url(#arrowhead)');
+                    line.classList.add('connection-line');
+                    connectionLines.appendChild(line);
+                }
+            });
+        }
+
+        // Update card visibility
+        function updateCards() {
+            cards.forEach((card, index) => {
+                const cardNum = parseInt(card.getAttribute('data-card'));
+                if (cardNum <= currentCard) {
+                    card.classList.add('active');
+                } else {
+                    card.classList.remove('active');
+                }
+            });
+            drawConnections();
+        }
+
+        // Card click handler
+        cards.forEach(card => {
+            card.addEventListener('click', function() {
+                const cardNum = parseInt(this.getAttribute('data-card'));
+                if (cardNum === currentCard) {
+                    // Special handling for card 1 - move it to position
+                    if (cardNum === 1) {
+                        const card1 = document.querySelector('.card-1');
+                        card1.classList.add('moved');
+                        setTimeout(() => {
+                            currentCard++;
+                            updateCards();
+                        }, 400); // Wait for animation to complete
+                    } else if (cardNum < 6) {
+                        currentCard++;
+                        updateCards();
+                    } else if (cardNum === 6 && !isOpen) {
+                        // Open envelope
+                        isOpen = true;
+                        envelope.classList.add('opened');
+                        setTimeout(() => {
+                            letterContainer.classList.add('revealed');
+                        }, 400);
+                    }
+                }
+            });
+        });
+
+        // Initial setup - don't draw lines yet
+        updateCards();
+        window.addEventListener('resize', drawConnections);
+
+        // Valentine's Day Button Interactions
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        let yesScale = 1;
+
+        if (btnNo) {
+            btnNo.addEventListener('click', function(e) {
+                e.preventDefault();
+                yesScale += 0.2;
+                btnYes.style.transform = `scale(${yesScale})`;
+                btnYes.style.transition = 'transform 0.3s ease';
+                
+                // Move No button randomly
+                const randomX = (Math.random() - 0.5) * 200;
+                const randomY = (Math.random() - 0.5) * 200;
+                btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                btnNo.style.transition = 'transform 0.3s ease';
+            });
+
+            btnNo.addEventListener('mouseenter', function() {
+                const randomX = (Math.random() - 0.5) * 150;
+                const randomY = (Math.random() - 0.5) * 150;
+                this.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                this.style.transition = 'transform 0.2s ease';
+            });
+        }
+
+        if (btnYes) {
+            btnYes.addEventListener('click', function() {
+                // Create fireworks
+                createFireworks();
+                
+                // Create balloons
+                createBalloons();
+                
+                // Hide buttons and show success message
+                document.querySelector('.button-container').innerHTML = '<p class="success-message">Yay! I\'m so happy! 🎉❤️🎈</p>';
+            });
+        }
+
+        // Fireworks function
+        function createFireworks() {
+            const colors = ['#ff1744', '#ff5252', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0', '#ff9800', '#e91e63'];
+            const container = document.body;
+            
+            // Create multiple firework bursts
+            for (let burst = 0; burst < 15; burst++) {
+                setTimeout(() => {
+                    const centerX = Math.random() * window.innerWidth;
+                    const centerY = Math.random() * (window.innerHeight * 0.6) + window.innerHeight * 0.2;
+                    
+                    // Create particles for each burst
+                    for (let particle = 0; particle < 20; particle++) {
+                        const firework = document.createElement('div');
+                        firework.className = 'firework';
+                        const color = colors[Math.floor(Math.random() * colors.length)];
+                        firework.style.backgroundColor = color;
+                        firework.style.left = centerX + 'px';
+                        firework.style.top = centerY + 'px';
+                        
+                        const angle = (Math.PI * 2 * particle) / 20;
+                        const distance = 100 + Math.random() * 50;
+                        const randomX = Math.cos(angle) * distance;
+                        const randomY = Math.sin(angle) * distance;
+                        
+                        firework.style.setProperty('--random-x', randomX + 'px');
+                        firework.style.setProperty('--random-y', randomY + 'px');
+                        
+                        container.appendChild(firework);
+                        
+                        setTimeout(() => {
+                            firework.remove();
+                        }, 2000);
+                    }
+                }, burst * 200);
+            }
+        }
+
+        // Balloons function
+        function createBalloons() {
+            const balloonColors = ['#ff1744', '#ff5252', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0', '#ff9800', '#e91e63'];
+            const container = document.body;
+            
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    const color = balloonColors[Math.floor(Math.random() * balloonColors.length)];
+                    balloon.style.backgroundColor = color;
+                    balloon.style.left = Math.random() * window.innerWidth + 'px';
+                    balloon.style.bottom = '-100px';
+                    balloon.style.animationDelay = Math.random() * 2 + 's';
+                    balloon.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
+                    
+                    container.appendChild(balloon);
+                    
+                    // Remove balloon after animation
+                    setTimeout(() => {
+                        balloon.remove();
+                    }, 10000);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
